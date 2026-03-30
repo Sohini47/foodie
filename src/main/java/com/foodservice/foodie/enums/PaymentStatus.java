@@ -1,4 +1,8 @@
 package com.foodservice.foodie.enums;
 
-public class PaymentStatus {
+public enum PaymentStatus {
+    INITIATED,
+    PAID,
+    CANCELLED,
+    COMPLETED;
 }
