@@ -1,9 +1,6 @@
 package com.foodservice.foodie.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +13,12 @@ public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    int orderId;
-    int menuItemId;
-    int quantity;
+    private int id;
+
+    private int orderId;
+    private int quantity;
+
+    @ManyToOne
+    @JoinColumn(name ="menuItemId", nullable = false)
+    private MenuItem menuItem;
 }

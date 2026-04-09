@@ -17,8 +17,9 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    int userId;
-    Double totalAmount;
-    Status status;
+    private int id;
+
+    private int userId;
+    private Double totalAmount;
+    private Status status;
 }

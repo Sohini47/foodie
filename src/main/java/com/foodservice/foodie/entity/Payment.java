@@ -17,9 +17,9 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    int orderId;
-    Double amount;
-    PaymentStatus status;
+    private int id;
+    private int orderId;
+    private Double amount;
+    private PaymentStatus status;
 
 }

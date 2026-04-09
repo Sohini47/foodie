@@ -16,9 +16,10 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
-    String name;
-    String location;
-    Double rating;
+    private String name;
+    private String location;
+    private Double rating;
+
 }
