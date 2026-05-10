@@ -1,24 +1,24 @@
 package com.foodservice.foodie.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="menuItem")
 public class MenuItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String name;
     private Double price;
 
     @ManyToOne
-    @JoinColumn(name = "restaurantId", nullable = false)
+    @JoinColumn(name = "restaurantId")
     private Restaurant restaurant;
 }
