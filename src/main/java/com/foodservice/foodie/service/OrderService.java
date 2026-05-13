@@ -1,9 +1,10 @@
 package com.foodservice.foodie.service;
 
-import com.foodservice.foodie.dto.OrderItemRequest;
-import com.foodservice.foodie.dto.OrderItemResponse;
-import com.foodservice.foodie.dto.OrderRequest;
-import com.foodservice.foodie.dto.OrderResponse;
+import com.foodservice.foodie.dto.request.OrderItemRequest;
+import com.foodservice.foodie.dto.response.OrderItemResponse;
+import com.foodservice.foodie.dto.request.OrderRequest;
+import com.foodservice.foodie.dto.response.OrderResponse;
+import com.foodservice.foodie.dto.response.UserResponse;
 import com.foodservice.foodie.entity.*;
 import com.foodservice.foodie.enums.Status;
 import com.foodservice.foodie.exception.ResourceNotFoundException;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -42,7 +42,7 @@ public class OrderService {
         if(request.getOrderItems()==null || request.getOrderItems().isEmpty()) {
             throw new IllegalArgumentException("Order must have at least one order item");
         }
-        User user = userService.getUserById(request.getUserId());
+        User user = userService.getUserEntityById(request.getUserId());
         Restaurant restaurant = restaurantService.findById(request.getRestaurantId());
 
         Order newOrder = new Order();

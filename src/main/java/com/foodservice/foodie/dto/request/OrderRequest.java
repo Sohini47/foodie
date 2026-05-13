@@ -1,13 +1,20 @@
-package com.foodservice.foodie.dto;
+package com.foodservice.foodie.dto.request;
 
-import lombok.Getter;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
 
 public class OrderRequest {
+
+    @NotNull(message = "User Id should not be null")
     private Long userId;
+
+    @NotNull(message = "Restaurant Id should not be null")
     private Long restaurantId;
+
+    @Valid
     private List<OrderItemRequest> orderItems;
 
     public Long getUserId() {

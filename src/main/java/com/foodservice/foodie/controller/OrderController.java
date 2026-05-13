@@ -1,9 +1,10 @@
 package com.foodservice.foodie.controller;
 
-import com.foodservice.foodie.dto.OrderRequest;
-import com.foodservice.foodie.dto.OrderResponse;
+import com.foodservice.foodie.dto.request.OrderRequest;
+import com.foodservice.foodie.dto.response.OrderResponse;
 import com.foodservice.foodie.entity.Order;
 import com.foodservice.foodie.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<Order> placeOrder(@RequestBody OrderRequest orderRequest) {
+    public ResponseEntity<Order> placeOrder(@Valid @RequestBody OrderRequest orderRequest) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(orderService.createOrder(orderRequest));
     }

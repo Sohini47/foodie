@@ -1,5 +1,6 @@
 package com.foodservice.foodie.controller;
 
+import com.foodservice.foodie.dto.request.RestaurantRequest;
 import com.foodservice.foodie.entity.Restaurant;
 import com.foodservice.foodie.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class RestaurantController {
     private RestaurantService restaurantService;
 
     @PostMapping
-    public ResponseEntity<List<Restaurant>> addRestaurant(@RequestBody List<Restaurant> restaurants) {
+    public ResponseEntity<List<Restaurant>> addRestaurant(@RequestBody List<RestaurantRequest> restaurants) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(restaurantService.save(restaurants)) ;
     }

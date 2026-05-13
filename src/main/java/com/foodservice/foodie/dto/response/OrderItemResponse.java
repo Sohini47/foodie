@@ -1,4 +1,4 @@
-package com.foodservice.foodie.dto;
+package com.foodservice.foodie.dto.response;
 
 public class OrderItemResponse {
     private Long menuItemId;

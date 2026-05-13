@@ -1,5 +1,7 @@
 package com.foodservice.foodie.controller;
 
+import com.foodservice.foodie.dto.request.UserRequest;
+import com.foodservice.foodie.dto.response.UserResponse;
 import com.foodservice.foodie.entity.User;
 import com.foodservice.foodie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +19,18 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<List<User>> save(@RequestBody List<User> users) {
+    public ResponseEntity<List<User>> save(@RequestBody List<UserRequest> users) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userService.save(users));
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<List<UserResponse>> getAllUsers(){
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id){
+    public ResponseEntity<UserResponse> getUserById(@PathVariable Long id){
         return ResponseEntity.ok(userService.getUserById(id));
     }
 }

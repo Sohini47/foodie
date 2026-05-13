@@ -1,12 +1,15 @@
-package com.foodservice.foodie.dto;
+package com.foodservice.foodie.dto.request;
 
-//import jakarta.validation.constraints.NotNull;
-//import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Min;
 
 public class OrderItemRequest {
 
+    @NotNull(message = "MenuItemId should not be null")
     private Long menuItemId;
 
+    @NotNull(message = "Quantity cannot be null")
+    @Min(value = 1, message = "Quantity should not be less than 1")
     private Integer quantity;
 
     public Integer getQuantity() {
