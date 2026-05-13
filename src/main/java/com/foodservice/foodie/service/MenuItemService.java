@@ -1,5 +1,6 @@
 package com.foodservice.foodie.service;
 
+import com.foodservice.foodie.dto.request.MenuItemRequest;
 import com.foodservice.foodie.entity.MenuItem;
 import com.foodservice.foodie.entity.Restaurant;
 import com.foodservice.foodie.exception.ResourceNotFoundException;
@@ -7,6 +8,7 @@ import com.foodservice.foodie.repository.MenuItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,10 +20,17 @@ public class MenuItemService {
     @Autowired
     private RestaurantService restaurantService;
 
-    public List<MenuItem> addMenuItemToRestaurant(Long id, List<MenuItem> menuItems) {
+    public List<MenuItem> addMenuItemToRestaurant(Long id, List<MenuItemRequest> menuItems) {
         Restaurant restaurant = restaurantService.findById(id);
-        menuItems.forEach(menuItem -> menuItem.setRestaurant(restaurant));
-        return menuItemRepository.saveAll(menuItems);
+        List<MenuItem> menuItemList = menuItems
+                .stream().map(menuItem ->{
+                    MenuItem m = new MenuItem();
+                    m.setRestaurant(restaurant);
+                    m.setName(menuItem.getName());
+                    m.setPrice(menuItem.getPrice());
+                    return m;
+                }).toList();
+        return menuItemRepository.saveAll(menuItemList);
     }
 
     public List<MenuItem> getMenuItemsByRestaurantId(Long restaurantId) {

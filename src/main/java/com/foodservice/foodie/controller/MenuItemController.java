@@ -1,5 +1,6 @@
 package com.foodservice.foodie.controller;
 
+import com.foodservice.foodie.dto.request.MenuItemRequest;
 import com.foodservice.foodie.entity.MenuItem;
 import com.foodservice.foodie.service.MenuItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ public class MenuItemController {
 
     @PostMapping
     public ResponseEntity<List<MenuItem>> createMenuItem(
-            @PathVariable Long restaurantId, @RequestBody List<MenuItem> menuItem) {
+            @PathVariable Long restaurantId, @RequestBody List<MenuItemRequest> menuItems) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(menuItemService.addMenuItemToRestaurant(restaurantId, menuItem));
+                .body(menuItemService.addMenuItemToRestaurant(restaurantId, menuItems));
     }
 
     @GetMapping
