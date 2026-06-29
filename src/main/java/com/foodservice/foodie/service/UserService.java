@@ -2,11 +2,11 @@ package com.foodservice.foodie.service;
 
 import com.foodservice.foodie.entity.User;
 import com.foodservice.foodie.repository.UserRepository;
+import com.foodservice.foodie.exception.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -14,8 +14,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void save(User user) {
-        userRepository.save(user);
+    public List<User> save(List<User> users) {
+        return userRepository.saveAll(users);
     }
 
     public List<User> getAllUsers() {
@@ -23,7 +23,7 @@ public class UserService {
     }
 
     public User getUserById(Long userId) {
-        return userRepository.findById(userId).orElseThrow(()-> new RuntimeException("Invalid User Id"));
+        return userRepository.findById(userId).orElseThrow(()-> new ResourceNotFoundException(User.class.getSimpleName(), "id", userId));
     }
 
 }

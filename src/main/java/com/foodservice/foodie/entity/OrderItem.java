@@ -1,22 +1,26 @@
 package com.foodservice.foodie.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="orderItem")
 public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    private int orderId;
-    private int quantity;
+    private Integer quantity;
+    private Double price;
+
+    @ManyToOne
+    @JoinColumn(name ="orderId", nullable = false)
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name ="menuItemId", nullable = false)

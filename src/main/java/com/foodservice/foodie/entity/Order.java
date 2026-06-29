@@ -1,25 +1,29 @@
 package com.foodservice.foodie.entity;
 
 import com.foodservice.foodie.enums.Status;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="orders")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    private int userId;
     private Double totalAmount;
     private Status status;
+
+    @ManyToOne
+    @JoinColumn(name ="userId", nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name ="restaurantId", nullable = false)
+    private Restaurant restaurant;
 }
