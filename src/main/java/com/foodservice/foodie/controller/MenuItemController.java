@@ -3,6 +3,7 @@ package com.foodservice.foodie.controller;
 import com.foodservice.foodie.dto.request.MenuItemRequest;
 import com.foodservice.foodie.entity.MenuItem;
 import com.foodservice.foodie.service.MenuItemService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class MenuItemController {
 
     @PostMapping
     public ResponseEntity<List<MenuItem>> createMenuItem(
-            @PathVariable Long restaurantId, @RequestBody List<MenuItemRequest> menuItems) {
+            @PathVariable Long restaurantId, @Valid @RequestBody List<MenuItemRequest> menuItems) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(menuItemService.addMenuItemToRestaurant(restaurantId, menuItems));
     }

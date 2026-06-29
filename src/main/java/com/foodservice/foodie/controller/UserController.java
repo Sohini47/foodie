@@ -4,6 +4,7 @@ import com.foodservice.foodie.dto.request.UserRequest;
 import com.foodservice.foodie.dto.response.UserResponse;
 import com.foodservice.foodie.entity.User;
 import com.foodservice.foodie.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<List<User>> save(@RequestBody List<UserRequest> users) {
+    public ResponseEntity<List<User>> save(@Valid @RequestBody List<UserRequest> users) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userService.save(users));
     }
