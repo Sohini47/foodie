@@ -20,7 +20,7 @@ public class MenuItemController {
 
     @PostMapping
     public ResponseEntity<List<MenuItem>> createMenuItem(
-            @PathVariable Long restaurantId, @Valid @RequestBody List<MenuItemRequest> menuItems) {
+            @PathVariable Long restaurantId, @RequestBody List<@Valid MenuItemRequest> menuItems) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(menuItemService.addMenuItemToRestaurant(restaurantId, menuItems));
     }
@@ -32,7 +32,7 @@ public class MenuItemController {
 
     @GetMapping("/{menuItemId}")
     public MenuItem getMenuItemById(@PathVariable Long restaurantId,  @PathVariable Long menuItemId) {
-        return menuItemService.getMenuItemById(menuItemId, restaurantId);
+        return menuItemService.getMenuItemById(restaurantId, menuItemId);
     }
 
     @GetMapping("/search")

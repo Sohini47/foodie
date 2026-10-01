@@ -10,7 +10,7 @@ public class MenuItemRequest {
     @NotNull(message = "Price cannot be null")
     private Double price;
 
-    @NotNull(message = "Restaurant Id cannot be null")
+//    @NotNull(message = "Restaurant Id cannot be null")
     private Long restaurantId;
 
     public String getName() {
